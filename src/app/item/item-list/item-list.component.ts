@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ITEMS } from '../itemList';
+import { ItemService } from 'src/app/service/item.service';
 
 @Component({
   selector: 'app-item-list',
@@ -10,9 +11,12 @@ export class ItemListComponent implements OnInit {
 
   items = ITEMS;
 
-  constructor() { }
+  constructor(private itemService: ItemService) {
+    
+   }
 
   ngOnInit() {
+    this.items =  this.itemService.getItem();
   }
 
 }
