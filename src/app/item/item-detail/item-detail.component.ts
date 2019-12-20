@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ITEMS } from '../itemList';
 import { ItemService } from 'src/app/service/item.service';
 
 @Component({
@@ -20,8 +19,14 @@ export class ItemDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        // this.item = ITEMS[+params.get('itemId')]
-        this.item = this.itemService.getFindId(+params.get('itemId'));
+        const itemsObservable = this.itemService.getFindId(params.get('itemId'));
+        itemsObservable.subscribe(
+          (data) => {
+            this.item = data;
+          },
+          (err) => { console.error(err) },
+          () => { console.log('OK!!') }
+        )
       }
     )
   }

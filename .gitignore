@@ -47,3 +47,4 @@ Thumbs.db
 
 # Config Files
 /server/config/db.js
+proxy.conf.json

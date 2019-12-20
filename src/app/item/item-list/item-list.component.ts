@@ -9,14 +9,22 @@ import { ItemService } from 'src/app/service/item.service';
 })
 export class ItemListComponent implements OnInit {
 
-  items = ITEMS;
+  items;
 
   constructor(private itemService: ItemService) {
-    
-   }
+
+  }
 
   ngOnInit() {
-    this.items =  this.itemService.getItem();
+    // this.items =  this.itemService.getItem();
+    const itemsObservable = this.itemService.getItem();
+    itemsObservable.subscribe(
+      (data) => {
+        this.items = data;
+      },
+      (err) => { console.error(err) },
+      () => { console.log('OK!!') }
+    );
   }
 
 }

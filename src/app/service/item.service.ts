@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable } from 'rxjs';
+
 import { ITEMS } from '../item/itemList';
 
 @Injectable({
@@ -6,14 +10,16 @@ import { ITEMS } from '../item/itemList';
 })
 export class ItemService {
 
-  constructor() { }
+  APIURL = '/api/v1/items/';
 
-  getItem() {
-    return ITEMS;
+  constructor(private http: HttpClient) { }
+
+  getItem(): Observable<any>{
+    return this.http.get(this.APIURL);
   }
 
-  getFindId(itemId: number) {
-    return ITEMS[itemId];
+  getFindId(itemId: string): Observable<any> {
+    return this.http.get(this.APIURL + itemId);
   }
 
 }
