@@ -47,5 +47,4 @@ Thumbs.db
 
 # Config Files
 /server/config/dev.js
-/server/config/prod.js
 proxy.conf.json
