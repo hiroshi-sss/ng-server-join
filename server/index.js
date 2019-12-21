@@ -4,6 +4,7 @@ const config = require("./config/db");
 const FakeDb = require("./fake-db");
 const db = mongoose.connection;
 const itemRoutes = require("./routes/items");
+const path = require("path");
 
 mongoose
   .connect(config.DB_URI, {
@@ -20,11 +21,13 @@ mongoose
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.json({'Test': true});
-})
-
 app.use("/api/v1/items", itemRoutes);
+
+const appPath = path.join(__dirname, "..", "dist", "app");
+app.use(express.static(appPath));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
 
 const PORT = process.env.PORT || "3000";
 
