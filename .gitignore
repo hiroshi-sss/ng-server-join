@@ -46,5 +46,6 @@ testem.log
 Thumbs.db
 
 # Config Files
-/server/config/db.js
+/server/config/dev.js
+/server/config/prod.js
 proxy.conf.json
