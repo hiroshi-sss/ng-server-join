@@ -10,16 +10,16 @@ import { ITEMS } from '../item/itemList';
 })
 export class ItemService {
 
-  APIURL = '/api/v1/items/';
+  apiUrl = '/api/v1/items/';
 
   constructor(private http: HttpClient) { }
 
-  getItem(): Observable<any>{
-    return this.http.get(this.APIURL);
+  getItem(): Observable<any> {
+    return this.http.get(this.apiUrl);
   }
 
   getFindId(itemId: string): Observable<any> {
-    return this.http.get(this.APIURL + itemId);
+    return this.http.get(this.apiUrl + itemId);
   }
 
 }
